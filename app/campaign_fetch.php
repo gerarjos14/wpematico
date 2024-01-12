@@ -306,12 +306,19 @@ class wpematico_campaign_fetch extends wpematico_campaign_fetch_functions {
      * @return true si lo procesó
      */
     function processItem($feed, $item, $feedurl) {
-        global $wpdb, $realcount;
+        global $wpdb, $realcount, $wpematico_fifu_meta;
         trigger_error(sprintf('<b>' . __('Processing item %s', 'wpematico'), $item->get_title() . '</b>'), E_USER_NOTICE);
         $this->current_item = array();
 
+        if(!empty($item->get_item_tags ('', 'link'))){
+            $permalink = $item->get_permalink();
+        }else{
+            $permalink = $item->get_id();
+        }
+        
         // Get the source Permalink trying to redirect if is set.
-        $this->current_item['permalink'] = $this->getReadUrl($item->get_permalink(), $this->campaign);
+        $this->current_item['permalink'] = $this->getReadUrl($permalink, $this->campaign);
+        
         // First exclude filters
         if ($this->exclude_filters($this->current_item, $this->campaign, $feed, $item)) {
             return -1;  // resta este item del total 
@@ -415,16 +422,18 @@ class wpematico_campaign_fetch extends wpematico_campaign_fetch_functions {
         //gets images array 
         $this->current_item = $this->Get_Item_images($this->current_item, $this->campaign, $feed, $item, $options_images);
         $this->current_item['featured_image'] = apply_filters('wpematico_set_featured_img', '', $this->current_item, $this->campaign, $feed, $item);
-
         if ($options_images['featuredimg']) {
             if (!empty($this->current_item['images'])) {
                 $this->current_item['featured_image'] = apply_filters('wpematico_get_featured_img', $this->current_item['images'][0], $this->current_item);
             }
         }
 
-
-        if ($options_images['rmfeaturedimg'] && !empty($this->current_item['featured_image'])) { // removes featured from content
-            $this->current_item['content'] = $this->strip_Image_by_src($this->current_item['featured_image'], $this->current_item['content']);
+        if ($options_images['rmfeaturedimg'] ) { // removes featured from content
+            if( !empty($this->current_item['featured_image'])){
+                $this->current_item['content'] = $this->strip_Image_by_src($this->current_item['featured_image'], $this->current_item['content']);
+            }elseif(!empty($wpematico_fifu_meta['fifu_image_url'])){
+                $this->current_item['content'] = $this->strip_Image_by_src($wpematico_fifu_meta['fifu_image_url'], $this->current_item['content']);
+            }
         }
 
         if ($this->cfg['nonstatic']) {
