@@ -41,6 +41,11 @@ class wpematico_campaign_fetch extends wpematico_campaign_fetch_functions {
         global $wpdb, $campaign_log_message, $jobwarnings, $joberrors;
         $jobwarnings = 0;
         $joberrors = 0;
+
+		if (empty($campaign_id)) {
+            return false; // If campaign is empty return false.
+        }
+		
         //set function for PHP user defined error handling
         if (defined('WP_DEBUG') and WP_DEBUG) {
             set_error_handler('wpematico_joberrorhandler', E_ALL | E_STRICT);
@@ -48,21 +53,9 @@ class wpematico_campaign_fetch extends wpematico_campaign_fetch_functions {
             set_error_handler('wpematico_joberrorhandler', E_ALL & ~E_NOTICE);
         }
 
-        // DEPRECATE by etruel on 2.6.10, will be deleted
-//		if (!version_compare(phpversion(), '5.3.0', '>')) { // PHP Version
-//			wpematico_init_set('safe_mode', 'Off');   // deprecated after 5.3
-//		}
-        wpematico_init_set('ignore_user_abort', 'On');
-
-        if (empty($campaign_id)) {
-            return false; // If campaign is empty return false.
-        }
-
-        //ignore_user_abort(true);			//user can't abort script (close windows or so.)
         $this->campaign_id = $campaign_id;   //set campaign id
         $this->campaign = WPeMatico :: get_campaign($this->campaign_id);
 
-        //$this->fetched_posts = $this->campaign['postscount'];
         $this->cfg = get_option(WPeMatico :: OPTION_KEY);
         $this->cfg = apply_filters('wpematico_check_options', $this->cfg);
 
@@ -72,31 +65,34 @@ class wpematico_campaign_fetch extends wpematico_campaign_fetch_functions {
 
         $campaign_timeout = (int) $this->cfg['campaign_timeout'];
 
+        wpematico_init_set('ignore_user_abort', 'On');
         wpematico_init_set('max_execution_time', $campaign_timeout);
+		
+//        trigger_error(sprintf(__('Max exec time is %1$d sec.', 'wpematico'), ini_get('max_execution_time')), E_USER_WARNING);
 
-        // new actions 
-        if ((int) $this->cfg['throttle'] > 0)
+		// Adds a delay after each inserted post
+		if ((int) $this->cfg['throttle'] > 0)
             add_action('wpematico_inserted_post', array('WPeMatico', 'throttling_inserted_post'));
 
         //Set job start settings
         $this->campaign['starttime'] = current_time('timestamp'); //set start time for job
-        $this->campaign['lastpostscount'] = 0; // Lo pone en 0 y lo asigna al final		
+        $this->campaign['lastpostscount'] = 0; // Set it to zero now and assign value at end fetch.
+		
         WPeMatico :: update_campaign($this->campaign_id, $this->campaign); //Save start time data
-//		add_post_meta($this->campaign_id, 'starttime', $campaign['starttime'], true) or
-//			update_post_meta($this->campaign_id, 'starttime', $campaign['starttime']);
-        //
-        $this->set_actions_and_filters();
 
+		// Current actions and filters to execute on this fetch  
+		$this->set_actions_and_filters();
+
+		/** 
+		 * Wpematico_init_fetching action
+		 * Mostly used to add more filters to be executed later on fetching process. 
+		 */
         if (has_action('Wpematico_init_fetching'))
             do_action('Wpematico_init_fetching', $this->campaign);
 
-        //check max script execution tme
-        // DEPRECATE by etruel on 2.6.10, will be deleted		if (ini_get('safe_mode') or strtolower(ini_get('safe_mode')) == 'on' or ini_get('safe_mode') == '1')
-        trigger_error(sprintf(__('Max exec time is %1$d sec.', 'wpematico'), ini_get('max_execution_time')), E_USER_WARNING);
-
         // check function for memorylimit
         if (!function_exists('memory_get_usage')) {
-            ini_set('memory_limit', apply_filters('admin_memory_limit', '256M')); //Wordpress default
+            wpematico_init_set('memory_limit', apply_filters('admin_memory_limit', '256M')); //Wordpress default
             trigger_error(sprintf(__('Memory limit set to %1$s ,because can not use PHP: memory_get_usage() function to dynamically increase the Memory!', 'wpematico'), ini_get('memory_limit')), E_USER_WARNING);
         }
         //run job parts
@@ -110,18 +106,22 @@ class wpematico_campaign_fetch extends wpematico_campaign_fetch_functions {
                 trigger_error(sprintf(__('Ending feed, reached running timeout at %1$d sec.', 'wpematico'), $campaign_timeout), E_USER_WARNING);
                 break;
             }
+			// Reset the timer setting again the max_execution_time
             wpematico_init_set('max_execution_time', $campaign_timeout, true);
-            $postcount += $this->processFeed($feed, $kf);   #- ---- Proceso todos los feeds      
+            $postcount += $this->processFeed($feed, $kf);   #- ---- Run all feeds      
         }
 
         $this->fetched_posts += $postcount;
 
-        $this->fetch_end(); // if everything ok call fetch_end  and end class
+        $this->fetch_end(); // if everything was ok, call fetch_end and end class
     }
 
+	/**
+	 * Current actions and filters to execute on each fetch
+	 */
     public function set_actions_and_filters() {
-        //hook to add actions and filter on init fetching
-        //add_action('Wpematico_init_fetching', array($this, 'wpematico_init_fetching') ); +
+        //hook to add actions and filter on init fetching 
+        //add_action('Wpematico_init_fetching', array(__CLASS__, 'my_wpematico_init_fetching') ); 
         add_filter('wpematico_custom_chrset', array('WPeMatico_functions', 'detect_encoding_from_headers'), 999, 1); // move all encoding functions to wpematico_campaign_fetch_functions
         add_filter('wpematico_after_item_parsers', array('wpematico_campaign_fetch_functions', 'wpematico_strip_links_a'), 1, 4);
         add_filter('wpematico_after_item_parsers', array('wpematico_campaign_fetch_functions', 'wpematico_strip_links'), 2, 4);
@@ -132,10 +132,8 @@ class wpematico_campaign_fetch extends wpematico_campaign_fetch_functions {
             add_filter('wpematico_get_post_content_feed', array('wpematico_campaign_fetch_functions', 'wpematico_get_yt_rss_tags'), 999, 4);
             add_filter('wpematico_get_item_images', array('wpematico_campaign_fetch_functions', 'wpematico_get_yt_image'), 999, 4);
         }
-
-        $priority = 10;
         if ($this->cfg['add_extra_duplicate_filter_meta_source'] && !$this->cfg['disableccf']) {
-            add_filter('wpematico_duplicates', array('wpematico_campaign_fetch_functions', 'WPeisDuplicatedMetaSource'), $priority, 3);
+            add_filter('wpematico_duplicates', array('wpematico_campaign_fetch_functions', 'WPeisDuplicatedMetaSource'), 10, 3);
         }
         if ($this->images_options['fifu']) {
             add_filter('wpematico_set_featured_img', array('wpematico_campaign_fetch_functions', 'url_meta_set_featured_image'), 999, 2);
@@ -143,7 +141,6 @@ class wpematico_campaign_fetch extends wpematico_campaign_fetch_functions {
             add_filter('wpematico_item_filters_pos_img', array('wpematico_campaign_fetch_functions', 'url_meta_set_featured_image_setmeta'), 999, 2);
         }
     }
-
     /**
      * Processes every feed of a campaign
      * @param   $feed       URL string    Feed 
@@ -151,7 +148,11 @@ class wpematico_campaign_fetch extends wpematico_campaign_fetch_functions {
      */
     private function processFeed($feed, $kf) {
         global $realcount;
-        @set_time_limit(0);
+
+//        @set_time_limit(0);
+//		  $campaign_timeout = (int) $this->cfg['campaign_timeout'];
+//        wpematico_init_set('max_execution_time', $campaign_timeout);
+
         trigger_error('<span class="coderr b"><b>' . sprintf(__('Processing feed %s.', 'wpematico'), esc_html($feed)) . '</b></span>', E_USER_NOTICE);   // Log
 
         $items = array();
@@ -159,7 +160,7 @@ class wpematico_campaign_fetch extends wpematico_campaign_fetch_functions {
         $prime = true;
 
         // Access the feed
-        if ($this->campaign['campaign_type'] == "feed" or $this->campaign['campaign_type'] == "youtube" or $this->campaign['campaign_type'] == "bbpress") {   // Access the feed
+        if ($this->campaign['campaign_type'] == "feed" or $this->campaign['campaign_type'] == "youtube" or $this->campaign['campaign_type'] == "bbpress") { 
             $wpe_url_feed = apply_filters('wpematico_simplepie_url', $feed, $kf, $this->campaign);
             /**
              * @since 1.8.0
@@ -200,9 +201,16 @@ class wpematico_campaign_fetch extends wpematico_campaign_fetch_functions {
                 }
             }
         }
-
-
-        foreach ($simplepie->get_items() as $item) {
+        $trueWhile = true;
+        $initialMemoryUsage = memory_get_usage();
+        $maxMemoryUsage = 64 * 1024 * 1024;
+        // Set your desired maximum memory usage in bytes 
+        $batchSize = $this->campaign['campaign_max'];
+        // Initial batch size 
+        $simplePieItems = $simplepie->get_items(0, $batchSize);
+        while($trueWhile){
+            
+        foreach ($simplePieItems as $item) {
             if ($prime) {
                 //with first item get the hash of the last item (new) that will be saved.
                 $this->lasthash[$feed] = md5($item->get_permalink());
@@ -259,7 +267,6 @@ class wpematico_campaign_fetch extends wpematico_campaign_fetch_functions {
                 break;
             }
         }
-
         $campaign_timeout = (int) $this->cfg['campaign_timeout'];
         // Processes post stack
         $realcount = 0;
@@ -291,6 +298,18 @@ class wpematico_campaign_fetch extends wpematico_campaign_fetch_functions {
                 $suma = "";
             }
         }
+            $currentMemoryUsage = memory_get_usage() - $initialMemoryUsage;
+            if ($currentMemoryUsage >= $maxMemoryUsage) {
+                // Reduce batch size if memory usage is too high 
+                $batchSize = max(1, $batchSize / 2);
+            }
+            $trueWhile = false;
+        }   
+
+        $simplepie->__destruct();
+        unset($items);
+        unset($simplepie);
+        
 
         if ($realcount) {
             trigger_error(sprintf(__('%s posts added', 'wpematico'), $realcount), E_USER_NOTICE);
@@ -309,16 +328,8 @@ class wpematico_campaign_fetch extends wpematico_campaign_fetch_functions {
         global $wpdb, $realcount, $wpematico_fifu_meta;
         trigger_error(sprintf('<b>' . __('Processing item %s', 'wpematico'), $item->get_title() . '</b>'), E_USER_NOTICE);
         $this->current_item = array();
-
-        if(!empty($item->get_item_tags ('', 'link'))){
-            $permalink = $item->get_permalink();
-        }else{
-            $permalink = $item->get_id();
-        }
-        
         // Get the source Permalink trying to redirect if is set.
-        $this->current_item['permalink'] = $this->getReadUrl($permalink, $this->campaign);
-        
+        $this->current_item['permalink'] = $this->getReadUrl($item->get_permalink(), $this->campaign);
         // First exclude filters
         if ($this->exclude_filters($this->current_item, $this->campaign, $feed, $item)) {
             return -1;  // resta este item del total 
@@ -600,7 +611,7 @@ class wpematico_campaign_fetch extends wpematico_campaign_fetch_functions {
         $args = array(
             'post_title' => $this->current_item['title'],
             'post_content' => $this->current_item['content'],
-            'post_excerpt' => $this->current_item['excerpt'],
+            'post_excerpt' => isset($this->current_item['excerpt']) ? $this->current_item['excerpt'] : '',
             'post_name' => $this->current_item['slug'],
             'post_content_filtered' => apply_filters('wpem_parse_content_filtered', $this->current_item['content']),
             'post_status' => $this->current_item['posttype'],
@@ -910,7 +921,6 @@ class wpematico_campaign_fetch extends wpematico_campaign_fetch_functions {
                     break;
             }
             $headers[] = 'Content-Type: text/html; charset=UTF-8';
-            //add_filter('wp_mail_content_type','wpe_change_content_type'); //function wpe_change_content_type(){ return 'text/html'; } 
 
             $to_mail = $this->campaign['mailaddresslog'];
 
@@ -947,19 +957,4 @@ class wpematico_campaign_fetch extends wpematico_campaign_fetch_functions {
 
         return;
     }
-}
-
-//function wpe_change_content_type(){ return 'text/html'; }
-function wpematico_init_set($index, $value, $error_only_fail = false) {
-    //$oldvalue = ini_get($index);
-    $oldvalue = @ini_set($index, $value); //@return string the old value on success, <b>FALSE</b> on failure. 
-    if ($error_only_fail) {
-        if ($oldvalue === false) {
-            trigger_error(sprintf(__('Trying to set %s = %s: \'%s\' - Old value:%s.', 'wpematico'), $index, $value, (($oldvalue === FALSE) ? __('Failed', 'wpematico') : __('Success', 'wpematico')), $oldvalue), (($oldvalue === FALSE) ? E_USER_WARNING : E_USER_NOTICE));
-        }
-    } else {
-        trigger_error(sprintf(__('Trying to set %s = %s: \'%s\' - Old value:%s.', 'wpematico'), $index, $value, (($oldvalue === FALSE) ? __('Failed', 'wpematico') : __('Success', 'wpematico')), $oldvalue), (($oldvalue === FALSE) ? E_USER_WARNING : E_USER_NOTICE));
-    }
-
-    return $oldvalue;
 }
