@@ -3,8 +3,8 @@ Contributors: etruel, khaztiel, gerarjos14, sniuk
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B8V39NWK3NFQU
 Tags: RSS,XML,rss to post,feed to post,rss aggregator
 Requires at least: 4.8
-Tested up to: 6.5.2
-Requires PHP: 5.6
+Tested up to: 6.5.4
+Requires PHP: 7.0
 Stable tag: 2.7
 License: GPLv2 or later
 
@@ -236,9 +236,9 @@ You can send your files to e-mail wpematico [at] etruel.com
 
 == Changelog ==
 
-= 2.7 May 10, 2024 =
+= 2.7 May 31, 2024 =
 
-Version 2.7 focuses on code improvements and documentations follow the standards of Wordpress coding developments.
+Major Version 2.7 focuses on code improvements and documentations follow the standards of Wordpress coding developments.
 Recommended update it on testing enviroments before update on production websites.
 
 #### _Enhancements:_
@@ -261,7 +261,7 @@ Recommended update it on testing enviroments before update on production website
 
 #### _Bugfixes:_
 
-< * Fixes on getting bad source permalink on some cases by empty feed tags.
+> * Fixes on getting bad source permalink on some cases by empty feed tags.
 > * Fixes some malformed values saved on Copy Campaign Quick Action.
 > * Fixes some issues and warnings on Campaigns List page.
 > * Fixes some warnings and minor bugs on Preview campaign. 
@@ -278,6 +278,18 @@ Recommended update it on testing enviroments before update on production website
 > * **Enlarges the version required for the Professional addon to 2.20**
 
 > See all detailed changelog at [wpematico Releases](https://wpematico.com/releases/)
+
+= 2.6.25 May 30, 2024 =
+
+* Added MDM notifications
+#### _Last version on 2.6.x series!!_
+
+We will soon reach one million downloads and we will celebrate it with the 2.7 major version.
+And not only that, but we are also prepared a big celebration for a whole month!
+In which we will release the new versions with many new free features,
+but we will also make many free gifts for all our community of WordPress users, customers and friends. 
+The month of June is coming strong! Don't miss it! Follow everything on this link!
+* [Millon Downloads Month](https://etruel.com/join-us-to-celebrate-the-million-downloads-month/)
 
 = 2.6.24 Mar 25, 2024 =
 * Improves compatibilities with WordPress 6.5
@@ -308,4 +320,5 @@ For the changelog of earlier versions, please refer to changelog.md file or [the
 
 
 == Upgrade Notice ==
-Major Release. Upgrade functions will be executed to improve compatibilities.
+
+Major Release. Recommended try in testing sites before update on production websites. 
