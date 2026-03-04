@@ -1,247 +1,226 @@
 === WPeMatico RSS Feed Fetcher ===
 Contributors: etruel, khaztiel, gerarjos14, sniuk
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B8V39NWK3NFQU
-Tags: RSS,XML,rss to blog,feed to post,rss aggregator
-Stable tag: 2.8.15
-Tested up to: 6.9
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B8V39NWK3NFQU 
+Tags: RSS, XML, rss to blog, feed to post, rss aggregator, content curation
+Stable tag: 2.8.16
+Tested up to: 7.0
 Requires at least: 4.8
 Requires PHP: 7.0
 License: GPLv2 or later
 
-WPeMatico is autoblogging in the blink of an eye!  On complete autopilot WPeMatico gets new contents regularly for your site!
+WPeMatico is autoblogging in the blink of an eye! On complete autopilot, WPeMatico delivers fresh content to your site regularly!
 
 == Description ==
 
-WPeMatico is a powerful and user-friendly WordPress plugin that automates the importing of RSS feeds and XML Files to create posts. It is designed for autoblogging, content curation, and news aggregation, allowing you to easily manage and publish content from multiple sources.
+**WPeMatico** is the most powerful and user-friendly WordPress plugin for automated content importing from RSS feeds and XML files. Designed for **autoblogging**, **content curation**, and **news aggregation**, it empowers you to effortlessly manage and publish content from unlimited sources—all on autopilot.
 
-[youtube https://www.youtube.com/watch?v=HjVcUzF-FYs]
+[youtube https://www.youtube.com/watch?v=HjVcUzF-FYs ]
 
 ---
-With WPeMatico, you can sit back while the plugin automatically fetches content from your chosen RSS feeds and XML Files and posts them on your website. Customize settings for categories, post types, images, and more to fully control your autoblogging experience.
+With WPeMatico, you can finally reclaim your time while the plugin works tirelessly in the background. Fetch content automatically from your favorite RSS feeds and XML sources, then publish it seamlessly on your website. Take full control with customizable settings for categories, post types, featured images, content templates, and much more.
 
 ## 🤖 Discover WPeMatico's Autoblogging Power ##
 
-* **Autoblogging**: Automatically import content from multiple RSS feeds and post them as WordPress posts or pages.
-* **Create Campaigns**: WPeMatico operates using campaigns, allowing you to group multiple RSS feeds into a single campaign and manage their import settings.
-* **Easy Feed Management**: Add, organize, and setup multiple feeds per campaign with ease. Manage and customize feed behavior for each campaign.
-* **Schedule Campaigns**: Set up campaign-specific schedules to automate when new posts should be published based on feed updates.
-* **Customize your posts**: Use customizable post templates to structure imported content exactly the way you want it to appear on your site.
-* **Import Multimedia**: Automatically import images, audio, and video from your feeds, ensuring rich media content for your site.
-* **Feed Auto Discovery**: Simply enter a website URL, and WPeMatico will automatically discover available RSS feeds, making the setup process faster and easier. (Thanks Simplepie!)
+* **True Autoblogging**: Automatically import content from unlimited RSS feeds and publish as WordPress posts, pages, or custom post types—completely hands-free.
+* **Campaign-Based Organization**: Group multiple feeds into organized campaigns with independent settings, schedules, and rules for maximum flexibility.
+* **Smart Feed Management**: Add, organize, and configure multiple feeds per campaign with intuitive controls. Customize fetch behavior for each source individually.
+* **Flexible Scheduling**: Set campaign-specific schedules to automate publishing based on feed updates—run campaigns hourly, daily, weekly, or on custom intervals.
+* **Customizable Content Templates**: Use powerful post templates with dynamic tags to structure imported content exactly how you want it to appear.
+* **Rich Media Import**: Automatically import and cache images, audio, and video from your feeds, ensuring rich, engaging content for your audience.
+* **Feed Auto-Discovery**: Simply paste a website URL and WPeMatico will automatically discover available RSS feeds, making setup lightning-fast. (Powered by SimplePie!)
 
-## 🌐 External Integrations with WPeMatico (and FREE) ##
+## 🌐 External Integrations (100% FREE) ##
 
-* **Featured Image from URL**: Seamlessly integrate with the _Featured Image from URL_ plugin to automatically set external images as featured images in your posts.
-* **Custom Cron Jobs**: Easily configure WPeMatico to work with server-based or third-party cron services for more flexible automation and scheduling.
-* **bbPress Forum Support**: Automatically publish forums, topics, and replies directly into your bbPress forums, enhancing your community-driven sites with external content.
-* **Custom XML Feeds**: Import and publish content from custom XML feeds by configuring feed settings to match your specific content needs.
-* **YouTube Integration**: Automatically publish content from YouTube playlists, channels, and profile feeds, keeping your site updated with fresh video content.
-* **Multilingual Publishing**: Support for publishing content in multiple languages using the Polylang plugin. Requires **Polylang** and [WPeMatico Polylang](https://wordpress.org/plugins/wpematico-polylang/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-polylang&utm_campaign=readme) for full compatibility.
+* **Featured Image from URL**: Seamlessly integrate with the *Featured Image from URL* plugin to use external images as featured images without downloading.
+* **Custom Cron Jobs**: Configure WPeMatico to work with server-based cron or third-party services for precise automation control.
+* **bbPress Forum Support**: Automatically publish forums, topics, and replies directly into your bbPress-powered community sites.
+* **Custom XML Feeds**: Import and publish content from any custom XML feed by mapping fields to your specific content needs.
+* **YouTube Integration**: Automatically publish videos from YouTube playlists, channels, and user feeds—keep your site fresh with video content.
+* **Multilingual Publishing**: Full support for multilingual sites using Polylang. Requires **Polylang** + [WPeMatico Polylang](https://wordpress.org/plugins/wpematico-polylang/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-polylang&utm_campaign=readme) for complete compatibility.
 
-### 🚀 Use WPeMatico If:
+### 🚀 Perfect For You If:
 
-* You need an autoblogging solution to keep your site updated with fresh content.
-* You are building a news aggregator and want to automate feed importing.
-* You want to simplify content curation by importing blog posts, news, and articles from different sources.
-* You are looking for an easy-to-use plugin to manage multiple RSS feeds in one place.
-* You want to republish articles or blog posts with customized templates to match your site’s design.
-* You run a multilingual site and need to translate imported posts automatically.
-* You require full control over the imported content, including custom fields, metadata, and images.
-* You need to sync and update your imported posts to keep the content fresh and relevant.
-* You want to enjoy your free time, drinking a coffee or reading a book while WPeMatico works for you.
+* You need a reliable **autoblogging solution** to keep your site updated with fresh, relevant content 24/7.
+* You're building a **news aggregator** or **content portal** and want to automate feed importing at scale.
+* You want to **simplify content curation** by importing blog posts, news, and articles from authoritative sources.
+* You need an **easy-to-use dashboard** to manage hundreds of RSS feeds in one centralized place.
+* You want to **republish and customize** articles with templates that match your brand's voice and design.
+* You run a **multilingual site** and need to import and translate content automatically.
+* You demand **full control** over imported content, including custom fields, metadata, images, and SEO settings.
+* You want to **sync and refresh** imported posts to keep content accurate and up-to-date.
+* You value your free time—let WPeMatico work while you enjoy your coffee ☕ or dive into a good book 📚.
 
-## 🔑 Unlock Professional Extensions ##
+## 🔑 Unlock Professional Power with Premium Extensions ##
 
-Enhance your WPeMatico experience with powerful addons that give you full control over your imported content, images, feeds, and more.
+Supercharge your WPeMatico experience with professional addons that give you **complete control** over every aspect of your imported content.
 
-* **NEW [GPT Spinner Add-on](https://etruel.com/downloads/wpematico-gpt-spinner/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-gpt-spinner&utm_campaign=readme):** The extension most requested by all of you is finally here! Revolutionize your content and images with re-written contents.
-
----
-* **[Professional Add-on](https://etruel.com/downloads/wpematico-professional/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-professional&utm_campaign=readme):** Expand WPeMatico with advanced parsing and filtering for media, images, tags, and custom fields. Automate complex feed management tasks effortlessly.
+* **🆕 [GPT Spinner Add-on](https://etruel.com/downloads/wpematico-gpt-spinner/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-gpt-spinner&utm_campaign=readme)**: The #1 requested extension is here! Revolutionize your content with AI-powered rewriting for unique, engaging posts every time.
 
 ---
-* **[Synchronizer](https://etruel.com/downloads/wpematico-synchronizer/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-synchronizer&utm_campaign=readme):** Keep your imported posts updated by syncing feed data with existing posts, including media, authors, and categories.
+* **[Professional Add-on](https://etruel.com/downloads/wpematico-professional/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-professional&utm_campaign=readme)**: The ultimate toolkit—advanced parsing, media filtering, tag management, custom fields, and automation rules that transform how you curate content.
 
 ---
-* **[Full Content](https://etruel.com/downloads/wpematico-full-content/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-full-content&utm_campaign=readme):** Extract full articles from web pages even when only summaries are provided in the RSS feed. Automatically fetch featured images using meta tags or social media tags.
+* **[Synchronizer](https://etruel.com/downloads/wpematico-synchronizer/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-synchronizer&utm_campaign=readme)**: Keep imported posts automatically updated. Sync changes from feed sources including media, authors, categories, and content revisions.
 
 ---
-* **[Manual Fetching](https://etruel.com/downloads/wpematico-manual-fetching/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-manual-fetching&utm_campaign=readme):** Review and manually insert items from campaign previews, either one by one or in bulk, and see them fully parsed with images, audio, or video before publishing.
+* **[Full Content](https://etruel.com/downloads/wpematico-full-content/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-full-content&utm_campaign=readme)**: Extract full articles from source websites even when feeds only provide summaries. Automatically fetch featured images using Open Graph and social meta tags.
 
 ---
-* **[Polyglot](https://etruel.com/downloads/wpematico-polyglot/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-polyglot&utm_campaign=readme):** Automatically translate your posts before publishing in any of 100+ supported languages, perfect for multilingual content.
+* **[Manual Fetching](https://etruel.com/downloads/wpematico-manual-fetching/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-manual-fetching&utm_campaign=readme)**: Review, edit, and manually approve items from campaign previews before publishing. See fully parsed content with images, audio, and video before it goes live.
 
 ---
-* **[Make me Feed "Good"](https://etruel.com/downloads/wpematico-make-feed-good/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-make-feed-good&utm_campaign=readme):** Generate custom RSS 2.0 feeds with content from external websites, even if they don’t have their own feed available.
+* **[Polyglot](https://etruel.com/downloads/wpematico-polyglot/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-polyglot&utm_campaign=readme)**: Automatically translate posts into 100+ languages before publishing. Perfect for building global, multilingual content sites.
 
 ---
-* **[Facebook Fetcher](https://etruel.com/downloads/wpematico-facebook-fetcher/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-facebook-fetcher&utm_campaign=readme):** Import posts, images, and comments from your own Facebook pages directly into your WordPress site, including full-size images and commenters’ names.
+* **[Make me Feed "Good"](https://etruel.com/downloads/wpematico-make-feed-good/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-make-feed-good&utm_campaign=readme)**: Generate custom RSS 2.0 feeds from any website—even those without native RSS support. Curate content from any source on the web.
 
 ---
-* **[Better Excerpts](https://etruel.com/downloads/wpematico-better-excerpts/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-better-excerpts&utm_campaign=readme):** Automatically create clean, well-formatted excerpts from the first sentences of posts, improving readability on both frontend and feed content.
+* **[Facebook Fetcher](https://etruel.com/downloads/wpematico-facebook-fetcher/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-facebook-fetcher&utm_campaign=readme)**: Import posts, images, and comments from your own Facebook pages directly into WordPress, including full-resolution images and commenter details.
 
 ---
-* **[Publish 2 Email](https://etruel.com/downloads/wpematico-publish-2-email/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-publish-2-email&utm_campaign=readme):** Send fetched posts to email addresses using WordPress Post via Email or plugins like Postie. Ideal for remote publishing workflows.
+* **[Better Excerpts](https://etruel.com/downloads/wpematico-better-excerpts/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-better-excerpts&utm_campaign=readme)**: Generate clean, beautifully formatted excerpts from post openings. Improve readability on archives, feeds, and search results.
 
 ---
-* **[WPeMatico Polylang](https://wordpress.org/plugins/wpematico-polylang/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-polylang&utm_campaign=readme):** Assign posts to specific Polylang languages for easy translation workflows. Free integration with Polylang and Lingotek.
+* **[Publish 2 Email](https://etruel.com/downloads/wpematico-publish-2-email/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-publish-2-email&utm_campaign=readme)**: Send fetched posts to email addresses using WordPress "Post via Email" or plugins like Postie. Ideal for remote publishing and email-to-blog workflows.
 
 ---
-## 🛟 Need Help? ##
+* **[WPeMatico Polylang](https://wordpress.org/plugins/wpematico-polylang/?utm_source=extension&utm_medium=description_tab&utm_content=wpematico-polylang&utm_campaign=readme)**: Assign posts to specific Polylang languages for streamlined translation workflows. Free integration with Polylang and Lingotek.
+
+---
+## 🛟 World-Class Support at Your Fingertips ##
 
 #### **[FREE Technical Support](https://etruel.com/my-account/support/?utm_source=extension&utm_medium=description_tab&utm_content=support&utm_campaign=readme)**  
-* For any issues you encounter, reach out to us for free technical support.  
-* We can even log into your site to diagnose and resolve the problem if necessary.  
-* You can also submit any bugs in the [Bugtracker](https://github.com/etruel/wpematico/issues).
+* Encounter an issue? Our dedicated support team is here to help—completely free.
+* We'll even log into your site personally to diagnose and resolve complex problems.
+* Found a bug? Report it directly on our [GitHub Bugtracker](https://github.com/etruel/wpematico/issues).
 
-#### **[Premium Support](https://etruel.com/downloads/premium-support/?utm_source=extension&utm_medium=description_tab&utm_content=premium-support&utm_campaign=readme)**   
-* Need more comprehensive assistance? Our premium support offers in-depth setup help.  
-* Whatever the issue, we will dig deep and work tirelessly until it's resolved.  
-* We’ll even log into your site directly to find and fix the problem.
+#### **[Premium Priority Support](https://etruel.com/downloads/premium-support/?utm_source=extension&utm_medium=description_tab&utm_content=premium-support&utm_campaign=readme)**   
+* Need immediate, in-depth assistance? Upgrade to Premium Support for white-glove service.
+* We dig deep and work relentlessly until your issue is resolved—guaranteed.
+* Direct site access for complex troubleshooting and custom configurations.
 
-#### **[Helpful Resources](https://etruel.com/faqs/)**
-* Need help with setup? **[CHECK DOCUMENTATION](https://etruel.com/faqs/)**
-* Want to see WPeMatico in action? **[VIEW TUTORIAL VIDEOS](https://www.wpematico.com/tutorial-videos/)**
-* Want to learn how to set featured images? **[CHECK THIS GUIDE](https://www.wpematico.com/set-images-featured-wpematico/)**
-* Interested in Premium Add-ons? **[DISCOVER PREMIUM EXTENSIONS](https://etruel.com/downloads/wpematico-professional/)**
-
----
-## Looking for more? ##
-
-**⚡[Flash Cache](https://wordpress.org/plugins/flash-cache/):** If you need a very good and WPeMatico compatible Cache plugin take a look at this FREE plugin.
+#### **[Knowledge Base & Resources](https://etruel.com/faqs/)**
+* **Setup Guides**: [Complete Documentation](https://etruel.com/faqs/)
+* **Video Tutorials**: [Watch WPeMatico in Action](https://www.wpematico.com/tutorial-videos/)
+* **Featured Images**: [Master Image Configuration](https://www.wpematico.com/set-images-featured-wpematico/)
+* **Premium Extensions**: [Explore All Add-ons](https://etruel.com/downloads/wpematico-professional/)
 
 ---
-## Requirements ##
+## Looking for More Performance? ##
 
-You can see all the requirements details in the System Status tab inside WPeMatico Settings screen.
-
----
-## Do you like WPeMatico? ##
-
-If you like WPeMatico, please [Rate 5 Stars](https://wordpress.org/support/view/plugin-reviews/wpematico?rate=5#new-post) on Wordpress. Thanks! 😉
-
-Don't hesitate to [give your feedback](https://wordpress.org/support/view/plugin-reviews/wpematico#new-post). It will help making the plugin better. Other contributions (such as new translations or helping other users on the support forum) are welcome!
+**⚡ [Flash Cache](https://wordpress.org/plugins/flash-cache/)**: The perfect companion for WPeMatico. A blazing-fast, fully compatible caching plugin—completely FREE.
 
 ---
-## Privacy terms ##
+## System Requirements ##
 
-For the first beta versions of this plugin I was inspired for the old WP-o-Matic and also old versions of BackWPUp to make the posttype list. I'm talking about 2009 or 2010. Thanks to the developers ;)
+View complete requirements in the **System Status** tab inside WPeMatico Settings.
 
-This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version. 
+---
+## Love WPeMatico? Show Your Support! ##
 
-This plugin works also with addons or extensions that many can be purchased on our website.
+If WPeMatico saves you time and effort, please **[Rate Us 5 Stars ⭐⭐⭐⭐⭐](https://wordpress.org/support/view/plugin-reviews/wpematico?rate=5#new-post)** on WordPress.org. Your feedback fuels our improvement!
 
-The plugin uses the Easy Digital Download Extension License Manager to check for updates and validity of licenses if they are in use.
+[Share your experience](https://wordpress.org/support/view/plugin-reviews/wpematico#new-post)—every suggestion helps us build a better plugin. Want to contribute? New translations and helping other users on our support forum are always welcome!
 
-On load the Extensions page, it reads a feed only once every 5 days from our website to keep the addons list updated. (Can be deactivated from WPeMatico Settings screen)
+---
+## Privacy & Transparency ##
 
-On load the Settings page of the plugin, once per day max, reads the 5 stars user reviews from WordPress to show them in sidebar. (Can be deactivated from WordPress Settings Writing screen)
+This plugin was originally inspired by WP-o-Matic and early versions of BackWPUp (circa 2009-2010). Special thanks to those pioneering developers.
 
-On submit the Subscription form in Welcome page, it make a request to wpematico.com website to suscribe the form data in our newsletters list.
+**License**: GNU General Public License v3 or later. This is free software; you can redistribute and/or modify it under the GPL terms.
 
-Plugin page: [wpematico.com](https://wpematico.com)
-Add-ons page: [etruel.com](https://etruel.com).
-Author page in spanish: [NetMdP](https://www.netmdp.com). 
+**Extensions**: Works with free and premium addons available on our website.
+
+**Update Checks**: Uses Easy Digital Downloads License Manager for update notifications and license validation.
+
+**External Requests**: 
+* Extensions list feed: fetched once every 5 days (can be disabled in Settings).
+* User reviews: fetched once daily for sidebar display (can be disabled in WordPress Writing Settings).
+* Newsletter subscription: only when submitting the Welcome page form.
+
+**Links**: [Plugin Homepage](https://wpematico.com) | [Add-ons Store](https://etruel.com) | [Author (Spanish)](https://www.netmdp.com)
 
 == Installation ==
 
-You can either install it automatically from the WordPress admin, or do it manually:
+### Automatic Installation (Recommended)
 
-= Using the Plugin Manager =
+1. Navigate to **Plugins → Add New** in your WordPress admin
+2. Search for `WPeMatico`
+3. Click **Install Now**, then **Activate**
+4. Find **WPeMatico** in your WordPress menu and start creating campaigns!
 
-1. Click Plugins
-2. Click Add New
-3. Search for `wpematico`
-4. Click Install
-5. Click Install Now
-6. Click Activate Plugin
-7. Now you must see WPeMatico Item on Wordpress menu
+### Manual Installation
 
-= Manually =
-
-1. Upload `wpematico` folder to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-
+1. Download and unzip the plugin
+2. Upload the `wpematico` folder to `/wp-content/plugins/`
+3. Activate through **Plugins** menu in WordPress
 
 == Screenshots ==
 
-1. Dashboard Widget and menu.
-
-1. The table list of campaigns plus some info of each one of them. 
-
-1. Quick edit campaigns inline.
-
-1. Get help in Wordpress tabs.
-
-1. The Settings Page.
-
-1. Editing a complete campaign. 
-
-1. SimplePie Requirements Tests.
-
+1. Dashboard Widget and WPeMatico menu integration.
+2. Campaigns list table with key metrics and quick actions.
+3. Inline Quick Edit for rapid campaign adjustments.
+4. Contextual Help tabs integrated into WordPress.
+5. Comprehensive Settings Page.
+6. Campaign Editor with full configuration options.
+7. SimplePie Requirements Tests for troubleshooting.
 
 == Frequently Asked Questions ==
 
-= First Install & testing requirements Video
+= First Install & Requirements Testing Video =
+[youtube https://youtu.be/z-yAVJY49XM ]
 
-[youtube https://youtu.be/z-yAVJY49XM]
+= Configuring Settings Video =
+[youtube https://youtu.be/_6naAu1C-Oc ]
 
-= Filling the Settings Video
+= Creating Your First Campaign Video =
+[youtube https://youtu.be/Kzex_AyfWyo ]
 
-[youtube https://youtu.be/_6naAu1C-Oc]
+= I've installed WPeMatico. What's next? =
 
-= Creating a Campaign Video
+After activation, you'll see a new **WPeMatico** menu in your WordPress admin. Start by configuring the plugin in **Settings**, then create your first **Campaign**. Add one or multiple RSS feeds to a campaign, organize them by topic or category, and let WPeMatico handle the rest!
 
-[youtube https://youtu.be/Kzex_AyfWyo]
+= How do I upgrade between versions? =
 
-= I have this plugin installed and activated. What must I do now ? =
+Updates are seamless—use WordPress's automatic updater from the Plugins page, or upload files via FTP for manual updates. Always backup before major updates.
 
-* OK, in Wordpress admin you should see now a new area below the posts called WPeMatico. At settings, setup the plugin configuration. At Campaigns you must add one. There, add one or several feeds of your choice. You can use a campaign for grouping the feeds for a category or another custom topic that you want.
+= Can I import embedded videos from feeds? =
 
-= Upgrading FREE or PRO versions =
+Absolutely! To preserve video embeds in post content, add `iframe` and `embed` to the **Allowed HTML Tags** in WPeMatico Settings under the SimplePie section:
 
-* You can make an automatic upgrade from Wordpress plugins page or replace files through FTP.
+**Change SimplePie HTML tags to strip:**
+> base, blink, body, doctype, font, form, frame, frameset, html, input, marquee, meta, noscript, object, param, script, style
 
-= Is there any way to import embedded videos from feed content and add that code into my posts? =
-* To allow video embeds in post content, you must add the tags 'iframe' and 'embed' in Simplepie library into **WPeMatico Settings**. See below:
+= Where can I get Professional extensions? =
 
-* **Change SimplePie HTML tags to strip**
+Browse our complete collection at the [etruel.com store](https://etruel.com/downloads/category/wpematico-add-ons/).
 
-> base,blink,body,doctype,font,form,frame,frameset,html,input,marquee,
+= Where can I find more help? =
 
-> meta,noscript,object,param,script,style
+* [Open a Support Ticket](https://etruel.com/my-account/support)
+* [Browse FAQs & Tutorials](https://etruel.com/faqs/)
 
-= Where can I get PROfessional version or other Add-Ons? =
+= Contributions & Credits =
 
-* [etruel.com store](https://etruel.com/downloads/category/wpematico-add-ons/).
+Special thanks to WordPress.org plugin moderators for their guidance in achieving maximum compatibility with WordPress standards.
 
-= Where can I ask/see more questions? =
+**Translators**: Romanian & Slovak by Branco ([WebHostingGeeks.com](https://webhostinggeeks.com/user-reviews/)).
 
-* [Ask in this page](https://etruel.com/my-account/support).
-* [See tips and tutorials on this page](https://etruel.com/faqs/).
+Want to translate WPeMatico? [Join the translation team](https://translate.wordpress.org/projects/wp-plugins/wpematico).
 
-= Contributions =
-
-We want to thank the WordPress.org plugins moderators as they helped us by marking the points to reinforce in the plugin to achieve even greater compatibility with WordPress in all the functions of our plugin.
-
-You can contribute with WPeMatico:
-
-Don't hesitate to [give your feedback](https://wordpress.org/support/view/plugin-reviews/wpematico#new-post). It will help making the plugin better.
-
-### Translations
-
-Many thanks to the generous efforts of our translators:
-
-Romanian & Slovak --> Branco [WebHostingGeeks.com](https://webhostinggeeks.com/user-reviews/).  
-
-If you'd like to help out by translating this plugin, please [sign up for an account and dig in](https://translate.wordpress.org/projects/wp-plugins/wpematico).
-
-We are receiving tutorials in text, pdf, videos and ideas for current and new features. All are welcome. Thank you!
-You can send your files to e-mail WPeMatico [at] etruel.com
+We welcome tutorials, videos, PDFs, and feature suggestions. Send contributions to: **WPeMatico [at] etruel.com**
 
 == Changelog ==
 
-> See all detailed changelog at [WPeMatico Releases](https://wpematico.com/releases/)
+> View complete release history at [WPeMatico Releases](https://wpematico.com/releases/)
+
+= 2.8.16 – Mar 4, 2026 =
+> _Critical bug fix for category hierarchy and WordPress 7.0 compatibility._
+* **Fixed**: Auto-categories now correctly respect parent category settings when multiple campaigns use similar category names. Previously, categories with identical names from different feeds could be incorrectly assigned or merged.
+* **Improved**: Enhanced category detection logic to properly verify parent-child relationships before assignment or creation.
+* **Improved**: Better handling of slug conflicts when WordPress automatically generates unique slugs for categories with duplicate names.
+* **Improved**: Layout in Categories Metabox with parents and childrens categories inside campaign editing screen.
+* **Fixed**: Layout compatibility issues with WordPress 7.0 styling changes in campaign edit screens. Ensures proper display and functionality of campaign interfaces with the upcoming WordPress release.
 
 = 2.8.15 – Feb 2, 2026 =
 > _General maintenance and stability improvements._

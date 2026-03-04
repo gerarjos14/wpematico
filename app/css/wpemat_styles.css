@@ -226,6 +226,7 @@ p {
     display: block;
 }
 .publish_status{
+    width: 100%;
 }
 #stati_options{
 	display: flex;
@@ -238,6 +239,7 @@ p {
 }
 #major-publishing-actions{
     border-top: 0;
+    flex-direction: column;
 }
 #major-publishing-actions .radio {
     min-width: 16px;
@@ -253,13 +255,16 @@ p {
     border: 1px solid #e5e5e5;
 }
 #category-box #categories li{
-    display: flex;
-    align-items: center;
+    /*display: flex;
+    align-items: center;*/
+    margin-bottom: 2px;
 }
+/*
 #category-box #categories li input[type="checkbox"]{
     min-width: 20px;
     margin-right: .5rem;
 }
+*/
 #category-box #categories li input[type="text"]{
     max-width: calc(100% - 28px);
 }
@@ -354,7 +359,7 @@ p {
 .wpematico_campaign_details .wpematico_current_state {
     width: 100%;
     padding: 5px 5px 0;
-    padding: 5px 5px 0;
+    border-spacing: 0;
 }
 .wpematico_campaign_details .wpematico_current_state #wpematico_current_state_actions {
     display: flex;
@@ -790,7 +795,6 @@ a.wpelinks {
 #paging-box {
     background-color: #F1F1F1;
     font-size: 11px;
-    height: 30px;
     padding: 5px 10px;
     border: 1px solid #e5e5e5;
 }
@@ -822,7 +826,8 @@ a.wpelinks {
     font-weight: bold;
 }
 ul#categories li .children {
-    margin-left: 12px;
+    margin-top: 2px;
+    margin-left: 20px;
 }
 #fieldserror {
     padding: 10px;
@@ -864,7 +869,6 @@ div.feed_column {
 }
 .feed_column input {
     font-size: 1em !important;
-    min-height: 28px;
     width: 100%;
 }
 #feed_actions {
@@ -880,6 +884,11 @@ div.feed_column {
     border: 1px solid #AAA;
     background: linear-gradient(to bottom, #fcfcfc 20%, #adadad 100%);
     border-radius: 2px;
+}
+body.branch-7 #feed_actions button {
+    height: 40px;
+    width: 40px;
+    font-size: 1.75em;
 }
 #feed_actions button:hover {
     cursor: pointer;
@@ -1970,4 +1979,3 @@ body.wpe_modal_log-is-active{
     opacity: 1;
     filter: contrast(150%);
   }
- 

@@ -544,38 +544,95 @@ class wpematico_campaign_fetch extends wpematico_campaign_fetch_functions {
         
                     $catname = $catego->term;
                     if (!empty($catname)) {
-                        //$this->current_item['categories'][] = wp_create_category($catname);  //Si ya existe devuelve el ID existente  // wp_insert_category(array('cat_name' => $catname));  //
-                        $term = term_exists($catname, 'category');
-                        if ($term !== 0 && $term !== null) {  // already exists
-                            trigger_error(__('Category exist: ', 'wpematico') . $catname, E_USER_NOTICE);
-                        } else { //if it doesn't exist, create it
-                            if (!isset($this->campaign['campaign_local_category']) || !$this->campaign['campaign_local_category']) { // if this option doesn't exist, continue with the creation
-                                trigger_error(__('Adding Category: ', 'wpematico') . $catname, E_USER_NOTICE);
-                                $parent_cat = "0";
-                                if (isset($this->campaign['campaign_parent_autocats']) && $this->campaign['campaign_parent_autocats'] > 0) {
-                                    $parent_cat = $this->campaign['campaign_parent_autocats'];
+                        
+                        // Define the father of the campaign
+                        $parent_cat = 0;
+                        if (isset($this->campaign['campaign_parent_autocats']) && $this->campaign['campaign_parent_autocats'] > 0) {
+                            $parent_cat = intval($this->campaign['campaign_parent_autocats']);
+                        }
+                        
+                        // Search for category by name WITHIN the specific parent
+                        $term_id = false;
+                        
+                        // Method 1: Find all child categories of the parent with that name
+                        if ($parent_cat > 0) {
+                            $child_terms = get_terms(array(
+                                'taxonomy' => 'category',
+                                'name' => $catname,
+                                'parent' => $parent_cat,
+                                'hide_empty' => false,
+                                'fields' => 'ids'
+                            ));
+                            
+                            if (!is_wp_error($child_terms) && !empty($child_terms)) {
+                                $term_id = intval($child_terms[0]);
+                                trigger_error(__('Found category under parent: ', 'wpematico') . $catname . ' (ID: ' . $term_id . ')', E_USER_NOTICE);
+                            }
+                        }
+                        
+                        // Method 2: If no specific parent was found, search globally
+                        if (!$term_id) {
+                            $term_check = term_exists($catname, 'category');
+                            if ($term_check && !is_wp_error($term_check)) {
+                                $found_term_id = is_array($term_check) ? $term_check['term_id'] : $term_check;
+                                $found_term = get_term($found_term_id, 'category');
+                                
+                                // Verify that it is under the correct parent
+                                if ($found_term && !is_wp_error($found_term)) {
+                                    if ($parent_cat == 0 || $found_term->parent == $parent_cat) {
+                                        // It is the correct category (without parent or with the correct parent).
+                                        $term_id = $found_term_id;
+                                        trigger_error(__('Category exists with correct parent: ', 'wpematico') . $catname, E_USER_NOTICE);
+                                    } else {
+                                        // It exists but with a different parent - we need to create a new one
+                                        trigger_error(__('Category exists with different parent (ID: ' . $found_term->parent . '), will create new under parent: ' . $parent_cat . ': ', 'wpematico') . $catname, E_USER_NOTICE);
+                                        $term_id = false; // Force creation
+                                    }
                                 }
+                            }
+                        }
+                        
+                        // If no valid category was found, create a new one.
+                        if (!$term_id) {
+                            if (!isset($this->campaign['campaign_local_category']) || !$this->campaign['campaign_local_category']) {
+                                trigger_error(__('Adding Category: ', 'wpematico') . $catname . ' under parent ID: ' . $parent_cat, E_USER_NOTICE);
+                                
                                 $arg_description = __('Auto Added by WPeMatico', 'wpematico');
                                 if (isset($this->cfg['disable_categories_description']) && $this->cfg['disable_categories_description']) {
                                     $arg_description = '';
                                 }
                                 $arg_description = apply_filters('wpematico_addcat_description', $arg_description, $catname);
         
-                                $arg = array('description' => $arg_description, 'parent' => $parent_cat);
-                                $term = wp_insert_term($catname, "category", $arg);
+                                $arg = array(
+                                    'description' => $arg_description, 
+                                    'parent' => $parent_cat
+                                    // We do NOT define slugs—we let WP generate them automatically.
+                                );
+                                
+                                $new_term = wp_insert_term($catname, "category", $arg);
+                                
+                                if (!is_wp_error($new_term) && isset($new_term['term_id'])) {
+                                    $term_id = intval($new_term['term_id']);
+                                    trigger_error(__('Created category: ', 'wpematico') . $catname . ' with ID: ' . $term_id . ' and slug: ' . (isset($new_term['slug']) ? $new_term['slug'] : 'auto-generated'), E_USER_NOTICE);
+                                } else {
+                                    trigger_error(__('Failed to create category: ', 'wpematico') . $catname . ' Error: ' . (is_wp_error($new_term) ? $new_term->get_error_message() : 'unknown'), E_USER_WARNING);
+                                }
                             }
                         }
-                        if (is_wp_error($term) || empty($term)) {
-                            continue;
+                        
+                        // Assign the category to the post
+                        if ($term_id) {
+                            $this->current_item['categories'][] = $term_id;
+                            trigger_error(__('Assigned category to post: ', 'wpematico') . $catname . ' (ID: ' . $term_id . ')', E_USER_NOTICE);
+                            $counter++;
+                        } else {
+                            trigger_error(__('Could not assign category: ', 'wpematico') . $catname, E_USER_WARNING);
                         }
-                        $this->current_item['categories'][] = $term['term_id'];
-                        // Increment the counter after successfully creating a category
-                        $counter++;
                     }
                 }
             }
         }
-
+		
         $this->current_item['posttype'] = $this->campaign['campaign_posttype'];
         $this->current_item['allowpings'] = $this->campaign['campaign_allowpings'];
         $this->current_item['commentstatus'] = $this->campaign['campaign_commentstatus'];
