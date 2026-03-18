@@ -2,7 +2,7 @@
 Contributors: etruel, khaztiel, gerarjos14, sniuk
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B8V39NWK3NFQU 
 Tags: RSS, XML, rss to blog, feed to post, rss aggregator, content curation
-Stable tag: 2.8.16
+Stable tag: 2.8.17
 Tested up to: 7.0
 Requires at least: 4.8
 Requires PHP: 7.0
@@ -213,6 +213,9 @@ We welcome tutorials, videos, PDFs, and feature suggestions. Send contributions 
 == Changelog ==
 
 > View complete release history at [WPeMatico Releases](https://wpematico.com/releases/)
+
+= 2.8.17 – Mar 18, 2026 =
+* **Improve the performance at charge the content
 
 = 2.8.16 – Mar 4, 2026 =
 > _Critical bug fix for category hierarchy and WordPress 7.0 compatibility._
