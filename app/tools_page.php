@@ -68,7 +68,7 @@ if (!class_exists('WPeMatico_Tools')) :
 			echo '<h2>' . esc_html__( 'WPeMatico code Logs', 'wpematico' ) . '</h2>';
 
 			echo '<form method="post">';
-			$nonce = wp_create_nonce('wpematico_debug_log_clear');
+			$nonce = wp_nonce_field('wpematico_debug_log_clear', 'wpematico_debug_log_nonce', false);
 
 			echo '<textarea name="wpematico_debug_log_content" readonly rows="20" style="width:100%; font-family: monospace;">' . esc_textarea( $log_content ) . '</textarea><br><br>';
 
