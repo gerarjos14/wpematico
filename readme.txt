@@ -216,6 +216,7 @@ We welcome tutorials, videos, PDFs, and feature suggestions. Send contributions 
 
 = 2.8.17 – Mar 18, 2026 =
 * **Improve the performance at charge the content
+* Fix functionality to clear the debug logs perfectly 
 
 = 2.8.16 – Mar 4, 2026 =
 > _Critical bug fix for category hierarchy and WordPress 7.0 compatibility._
