@@ -214,9 +214,9 @@ We welcome tutorials, videos, PDFs, and feature suggestions. Send contributions 
 
 > View complete release history at [WPeMatico Releases](https://wpematico.com/releases/)
 
-= 2.8.17 – Mar 18, 2026 =
-* **Improve the performance at charge the content
-* Fix functionality to clear the debug logs perfectly 
+= 2.8.17 – Mar 19, 2026 =
+* Improved loading of the plugin's hooks.
+* Fixes a bug related to clearing the debug logs.
 
 = 2.8.16 – Mar 4, 2026 =
 > _Critical bug fix for category hierarchy and WordPress 7.0 compatibility._
